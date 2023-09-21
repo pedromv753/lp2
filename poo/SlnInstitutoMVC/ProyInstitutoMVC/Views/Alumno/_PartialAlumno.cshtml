@@ -1,0 +1,56 @@
+﻿@model IEnumerable<ProyInstitutoMVC.Models.Alumno>
+
+<h2>Vista Parcial: _PartialAlumno</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.cod_alumno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nom_alumno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_nac)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.distrito)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pension)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.cod_alumno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nom_alumno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_nac)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.distrito)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pension)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<br/>
+<div class="alert alert-info">
+    Cantidad de Alumnos: @Model.Count()
+</div>

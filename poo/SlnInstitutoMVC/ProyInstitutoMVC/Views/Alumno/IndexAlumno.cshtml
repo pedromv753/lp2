@@ -1,0 +1,16 @@
+﻿@model IEnumerable<ProyInstitutoMVC.Models.Alumno>
+
+@{
+    ViewBag.Title = "IndexAlumno";
+}
+
+<h2>IndexAlumno</h2>
+
+<p>
+    @Html.ActionLink("Consulta por Pension", "AlumnosPension") |
+    @Html.ActionLink("Consulta por Distrito", "AlumnosDistrito")
+</p>
+
+<!-- table -->
+<!-- llamar a la vista parcial: _PartialAlumno -->
+@Html.Partial("_PartialAlumno")

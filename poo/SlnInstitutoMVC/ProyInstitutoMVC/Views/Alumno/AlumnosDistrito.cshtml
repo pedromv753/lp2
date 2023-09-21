@@ -1,0 +1,28 @@
+﻿@model IEnumerable<ProyInstitutoMVC.Models.Alumno>
+
+@{
+    ViewBag.Title = "AlumnosDistrito";
+}
+
+<h2>AlumnosDistrito</h2>
+
+@using(Html.BeginForm())
+{ 
+    <div>
+        @*
+        Seleccione Distrito: @Html.TextBox("nombre","")
+        *@
+
+        Seleccione Distrito: @Html.DropDownList("nombre", 
+                                                (SelectList)ViewBag.DISTRITOS)
+        <button class="btn btn-success">Consultar</button>
+    </div>
+}
+<br/>
+
+<p>
+    @Html.ActionLink("Regresar", "IndexAlumno")
+</p>
+
+<!-- llamar a la vista parcial: _PartialAlumno -->
+@Html.Partial("_PartialAlumno")

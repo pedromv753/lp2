@@ -1,0 +1,25 @@
+﻿@model IEnumerable<ProyInstitutoMVC.Models.Alumno>
+
+@{
+    ViewBag.Title = "AlumnosPension";
+}
+
+<h2>AlumnosPension</h2>
+
+<!-- formulario MVC -->
+@using (Html.BeginForm())
+{
+    <div>
+        Pensión >= @Html.TextBox("pension", "0")
+        <button class="btn btn-info">Consultar</button>
+    </div>
+}
+<br />
+
+<p>
+    @Html.ActionLink("Regresar", "IndexAlumno")
+</p>
+
+<!-- llamar a la vista parcial: _PartialAlumno -->
+@Html.Partial("_PartialAlumno")
+

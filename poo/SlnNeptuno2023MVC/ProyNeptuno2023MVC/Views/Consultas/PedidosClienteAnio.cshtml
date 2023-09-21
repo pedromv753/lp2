@@ -1,0 +1,37 @@
+﻿@model IEnumerable<ProyNeptuno2023MVC.Models.pa_pedidos_cliente_anio>
+
+@{
+    ViewBag.Title = "PedidosClienteAnio";
+}
+
+<h2>PedidosClienteAnio</h2>
+
+<!-- Formulario de MVC -->
+@using (Html.BeginForm())
+{
+    <div>
+        @* Cliente: @Html.TextBox("Codigo")  *@
+
+        Seleccione Cliente: @Html.DropDownList("Codigo", 
+                                             (SelectList)ViewBag.Clientes, 
+                                             "",
+                                             new { @class = "form-select" })
+        <br/>
+        Año: @Html.TextBox("anio")
+        <button class="btn btn-info">Consultar</button>
+    </div>
+}
+<br />
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<!-- llamando a la vista parcial -->
+@Html.Partial("_PartialPedidosCliente")
+
+<br/>
+<div>
+    Cantidad de Pedidos: @Model.Count()
+    Suma Total de Importes: @Model.Sum( p => p.Importe )
+</div>

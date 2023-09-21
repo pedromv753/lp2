@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ProyNeptuno2023MVC.Models.pa_pedidos_cliente>
+
+@{
+    ViewBag.Title = "PedidosCliente";
+}
+
+<h2>PedidosCliente</h2>
+
+<!-- Formulario de MVC -->
+@using (Html.BeginForm())
+{
+    <div>
+        Cliente: @Html.TextBox("Codigo")
+        <button class="btn btn-info">Consultar</button>
+    </div>
+}
+<br />
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<!-- llamar a la vista parcial -->
+
+@Html.Partial("_PartialPedidosCliente")
+
+<br />
+<div class="alert alert-success">
+    Cantidad Total de Pedidos:@ViewBag.Cantidad
+</div>
+<br/>
+
+<div class="alert alert-info">
+    Cantidad de Alumnos: @Model.Count()
+</div>

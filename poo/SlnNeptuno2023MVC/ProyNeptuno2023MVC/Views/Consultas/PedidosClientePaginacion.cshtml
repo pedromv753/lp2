@@ -1,0 +1,118 @@
+﻿@model IEnumerable<ProyNeptuno2023MVC.Models.pa_pedidos_cliente>
+
+@{
+    ViewBag.Title = "PedidosClientePaginacion";
+}
+
+<h2>PedidosClientePaginacion</h2>
+
+@using (Html.BeginForm())
+
+{
+
+    <div>
+
+        Seleccione Cliente: @Html.DropDownList("Codigo",
+
+      (SelectList)ViewBag.Clientes,
+
+      "",
+
+      new { @class = "form-select" })
+
+        <br />
+
+        <button class="btn btn-success">Consultar</button>
+
+    </div>
+
+}
+
+<br />
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdPedido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaPedido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Apellidos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Importe)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPedido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaPedido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellidos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Importe)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<br />
+
+<div class="alert alert-success">
+
+    Cantidad Total de Pedidos: @ViewBag.Cantidad
+
+</div>
+
+<br />
+
+
+
+<div class="alert alert-info">
+
+    @for (int i = 0; i < ViewBag.CANT_PAGINAS; i++)
+
+    {
+
+        @Html.ActionLink(
+
+          (i + 1).ToString(),
+
+          "PedidosClientePaginacion",
+
+          new { nro_pag = i, Codigo = ViewBag.Codigo },
+
+          new { @class = "btn btn-primary" }
+
+      )
+
+    }
+
+</div>
+
+
+
+
+
+
+
+
