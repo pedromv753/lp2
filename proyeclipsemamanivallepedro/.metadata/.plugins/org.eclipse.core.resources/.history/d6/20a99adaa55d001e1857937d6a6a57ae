@@ -1,0 +1,11 @@
+/**
+ * 
+ */
+package com.farmacia.modelo;
+
+/**
+ * 
+ */
+public @interface Entity {
+
+}

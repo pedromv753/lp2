@@ -1,0 +1,8 @@
+#MySQL
+spring.datasource.url=jdbc:mysql://localhost:3306/bd_farmacia
+spring.datasource.username=root
+spring.datasource.password=mysql
+
+#Hibernate
+spring.jpa.hibernate.ddl-auto=update
+
