@@ -1,0 +1,79 @@
+package entidades;
+
+import java.util.Date;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+
+
+@Entity
+@Table(name="ferreteria")
+public class ferreteria {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+	private String nombre;
+	private String descripcion;
+	private int precio;	
+	private double cantidad;
+	
+	public ferreteria(int id, String nombre, String descripcion, int precio,  double cantidad) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.precio =precio;
+		this.cantidad = cantidad;
+	}
+
+	public ferreteria() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public String getDecripcion() {
+		return descripcion;
+	}
+	public void setDecripcion(String decripcion) {
+		this.descripcion = decripcion;
+	}
+	public int getPrecio() {
+		return precio;
+	}
+	public void setPrecio(int precio) {
+		this.precio = precio;
+	}
+	public double getCantidad() {
+		return cantidad;
+	}
+	public void setCantidad(double cantidad) {
+		this.cantidad = cantidad;
+	}
+
+	@Override
+	public String toString() {
+		return "Ferreteria [id=" + id + ", nombres=" + nombre + ", descripcion=" + descripcion + ", precio="
+				+ precio + ", cantidad=" + cantidad + "]";
+	}	
+	
+
+	
+
+	
+}

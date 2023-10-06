@@ -1,0 +1,62 @@
+package controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import ch.qos.logback.core.model.Model;
+import entidades.ferreteria;
+import interfaces.IFerreteriaRepositorio;
+
+	
+	@Controller
+	@RequestMapping("/ferreteria")
+	public class ferreteriaController {
+
+		@Autowired
+		private IFerreteriaRepositorio ferreteriaRepositorio; // Inyeccion de dependencias
+
+		@GetMapping("/")
+		public String listarferreteria(Model model) {
+			List<ferreteria> ferreteria = ferreteriaRepositorio.findAll();
+			model.addAttribute("ferreteria", ferreteria);
+			return "listarferreteria"; // nombre de la vista
+		}
+
+		@GetMapping("/nuevo")
+		public String nuevoferreteria(Model model) {
+			model.addAttribute("ferreteria", new ferreteria());
+			return "nuevo"; // nombre de la vista
+		}
+
+		@PostMapping("/guardar")
+		public String guardarferreteria(@ModelAttribute ferreteria ferreteria) {
+			ferreteriaRepositorio.save(ferreteria);
+			return "redirect:/ferreteria/"; // redirecciona para ver la lista
+		}
+
+		@GetMapping("/editar/{id}")
+		public String editarferreteria(@PathVariable Integer id, Model model) {
+			ferreteria ferreteria = ferreteriaRepositorio.findById(id)
+					.orElseThrow(() -> new IllegalArgumentException("ID de ferreteria no válido"));
+			model.addAttribute("ferreteria", ferreteria);
+			return "editaferretria"; // Vista de edición
+		}
+
+		@GetMapping("/eliminar/{id}")
+		public String eliminarLibro(@PathVariable Integer id) {
+			ferreteriaRepositorio.deleteById(id);
+			return "redirect:/libros/";
+		}
+		
+		
+	}
+
+
+

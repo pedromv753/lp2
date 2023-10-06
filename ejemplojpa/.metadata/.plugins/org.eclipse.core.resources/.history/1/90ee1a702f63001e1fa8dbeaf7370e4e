@@ -1,0 +1,37 @@
+package controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import ch.qos.logback.core.model.Model;
+import entidades.ferreteria;
+import interfaces.IFerreteriaRepositorio;
+
+	
+	@Controller
+	@RequestMapping("/ferreteria")
+	public class ferreteriaController {
+
+		@Autowired
+		private IFerreteriaRepositorio ferreteriaRepositorio; // Inyeccion de dependencias
+
+		@GetMapping("/")
+		public String listarFerreterias(Model model) {
+			List<ferreteria> ferreterias=ferreteriaRepositorio.findAll();
+		model.addAttribute("ferreteria", ferreterias);
+			return "listarferreterias"; // nombre de la vista
+		}
+
+		}
+		
+		
+
+
+

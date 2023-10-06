@@ -1,0 +1,59 @@
+package controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import ch.qos.logback.core.model.Model;
+import entidades.ferreteria;
+import interfaces.IFerreteriaRepositorio;
+
+	
+	@Controller
+	@RequestMapping("/ferreteria")
+	public class ferreteriaController {
+
+		@Autowired
+		private IFerreteriaRepositorio ferreteriaRepositorio; // Inyeccion de dependencias
+
+		@GetMapping("/")
+		public String listarferreteria(Model model) {
+			List<ferreteria> ferreteria = ferreteriaRepositorio.findAll();
+			model.addAttribute("ferreteria", ferreteria);
+			return "listarferreteria"; // nombre de la vista
+		}
+
+		@GetMapping("/nuevo")
+		public String nuevoLibro(Model model) {
+			model.addAttribute("libro", new Libro());
+			return "nuevo"; // nombre de la vista
+		}
+
+		@PostMapping("/guardar")
+		public String guardarlibro(@ModelAttribute Libro libro) {
+			libroRepositorio.save(libro);
+			return "redirect:/libros/"; // redirecciona para ver la lista
+		}
+
+		@GetMapping("/editar/{id}")
+		public String editarLibro(@PathVariable Integer id, Model model) {
+			Libro libro = libroRepositorio.findById(id)
+					.orElseThrow(() -> new IllegalArgumentException("ID de libro no válido"));
+			model.addAttribute("libro", libro);
+			return "editalibro"; // Vista de edición
+		}
+
+		@GetMapping("/eliminar/{id}")
+		public String eliminarLibro(@PathVariable Integer id) {
+			libroRepositorio.deleteById(id);
+			return "redirect:/libros/";
+		}
+		
+		
+	}
+
+
+}

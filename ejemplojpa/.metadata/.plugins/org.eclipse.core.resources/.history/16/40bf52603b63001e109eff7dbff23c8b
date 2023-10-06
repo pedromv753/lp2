@@ -1,0 +1,8 @@
+package interfaces;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import entidades.ferreteria;
+
+public interface IFerreteriaRepositorio  extends JpaRepository<ferreteria, Integer> {
+
+}
