@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>compras</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+	<div class="container">
+		<h1 class="mt-5">actualizar el inventario </h1>
+		<form action="/buscar" method="GET" class="mb-3">
+			<div class="input-group">
+				<input type="text" name="descripcion" class="form-control" placeholder="Buscar por producto">
+				<div class="input-group-append">
+					<button type="submit" class="btn btn-primary">Buscar</button>
+				</div>
+			</div>
+		</form>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>producto_id</th>
+					<th>cantidad</th>
+					<th>total</th>
+					<th>fecha</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="Compras : ${Compras}">
+					<td th:text="${Compras.id}"></td>
+					<td th:text="${Compras.producto_id}"></td>
+					<td th:text="${Compras.cantidad}"></td>
+					<td th:text="${Compras.total}"></td>
+					<td th:text="${Compras.fecha}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<!-- Agrega la referencia a Bootstrap JS y jQuery (opcional) -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,12 @@
+package interfaces;
+
+
+	import org.springframework.data.jpa.repository.JpaRepository;
+
+	import modelos.Compras;
+
+	public interface interfacesCompras extends JpaRepository<Compras, Integer>{
+
+	}
+
+

@@ -1,0 +1,37 @@
+package com.example.demo.controlador;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.example.demo.interfaces.interfacesProductos;
+import com.example.demo.modelos.Productos;
+
+
+
+	
+	@Controller
+	@RequestMapping("/productos")
+	public class catalogocontroller {
+	
+	@Autowired
+	private interfacesProductos productosRep;
+	
+	@GetMapping("/")
+	public String catalogo(Model model) {
+		List<Productos> productos = productosRep.findAll();
+		model.addAttribute("productos", productos);
+		return "catalogo"; 
+	}
+	
+	@GetMapping("/nuevo")
+	public String nuevocatalogo(Model model) {
+		model.addAttribute("producto", new Productos());
+		return "nuevocatalogo"; // nombre de la vista
+	}
+	
+}

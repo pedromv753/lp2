@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>compras</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+	<div class="container mt-4">
+		<h2>Actualizar compra</h2>
+		<form th:action="@{/compras/guardar}" th:object="${compra}" method="post">
+			
+			<div class="form-group mb-3">
+				<label for="id" class="form-label">id</label>
+				<input type="number" class="form-control" id="id" name="id" th:field="*{id}" required>
+			</div>
+			
+			<div class="form-group mb-3">
+				<label for="producto_id" class="form-label">producto_id</label>
+				<input type="number" class="form-control" id="producto_id" name="producto_id" th:field="*{producto_id}" required>
+			</div>
+			<div class="form-group mb-3">
+				<label for="cantidad" class="form-label">cantidad</label>
+				<input type="number" class="form-control" id="cantidad" name="cantidad" rows="3" th:field="*{cantidad}" required></textarea>
+			</div>
+			<div class="form-group mb-3">
+				<label for="total" class="form-label">total</label>
+				<input type="number" class="form-control" id="total" name="total" th:field="*{total}" required>
+			</div>
+			<div class="form-group mb-3">
+				<label for="fecha" class="form-label">fecha</label>
+				<input type="date" class="form-control" id="fecha" name="fecha" th:field="*{fecha}" required>
+			</div>
+			<button type="submit" class="btn btn-primary">Guardar</button>
+		</form>
+	</div>
+</body>
+
+</html>

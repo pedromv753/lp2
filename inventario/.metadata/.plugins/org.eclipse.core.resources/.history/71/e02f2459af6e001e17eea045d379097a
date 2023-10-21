@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>carrito de compras</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+	<div class="container mt-4">
+		<h2>compras</h2>
+		<form th:action="@{/nuevo}" method="post">
+			
+			<div class="form-group">
+				<label for="id" class="form-label">id</label>
+				<input type="number" class="form-control" id="id" name="id" required>
+			</div>
+			
+			<div class="form-group">
+				<label for="producto_id" class="form-label">producto_id</label>
+				<input type="number" class="form-control" id="producto_id" name="producto_id" required>
+			</div>
+			<div class="form-group">
+				<label for="cantidad" class="form-label">cantidad</label>
+				<input type="number" class="form-control" id="cantidad" name="cantidad" required>
+			</div>
+			<div class="form-group">
+				<label for="total" class="form-label">total</label>
+				<input type="number" class="form-control" id="total" name="total" required>
+			</div>
+			<div class="form-group">
+				<label for="fecha" class="form-label">fecha</label>
+				<input type="datetime" class="form-control" id="fecha" name="fecha" required>
+			</div>
+			<button type="submit" class="btn btn-primary">seleccionado</button>
+		</form>
+	</div>
+</body>
+
+</html>

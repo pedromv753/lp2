@@ -1,0 +1,61 @@
+package com.example.demo.controlador;
+
+import java.util.List;
+
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+
+import com.example.demo.interfaces.interfacesCompras;
+import com.example.demo.modelos.Compras;
+import com.example.demo.modelos.Productos;
+	
+@Controller
+@RequestMapping("/compras")
+public class ComprasController {
+	@Autowired
+	private interfacesCompras comprasRep;
+	
+	@GetMapping("/")
+	public String listarcliente(Model model) {
+		List<Compras> compras = comprasRep.findAll();
+		model.addAttribute("compras", compras);
+		return "listarcompras"; 
+	}
+
+	@GetMapping("/nuevo")
+	public String nuevocompras(Model model) {
+		List<Productos> productos = productosRep.findAll();
+		model.addAttribute("productos", productos);
+		model.addAttribute("compras", new Compras());
+		return "nuevoCompra"; 
+	}
+
+	@PostMapping("/guardar")
+	public String guardarproducto(@ModelAttribute Compras compras) {
+		comprasRep.save(compras);
+		return "redirect:/productos/"; 
+	}
+
+	@GetMapping("/editar/{id}")
+	public String editarcompra(@PathVariable Integer id, Model model) {
+		Compras compras = comprasRep.findById(id)
+				.orElseThrow(() -> new IllegalArgumentException("ID de cliente no válido"));
+		model.addAttribute("compras", compras);
+		return "editacompra";
+	}
+
+	@GetMapping("/eliminar/{id}")
+	public String eliminarcompras(@PathVariable Integer id) {
+		comprasRep.deleteById(id);
+		return "redirect:/productos/";
+	}
+}

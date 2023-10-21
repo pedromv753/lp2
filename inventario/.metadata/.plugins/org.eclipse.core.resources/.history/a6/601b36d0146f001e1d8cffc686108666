@@ -1,0 +1,21 @@
+html
+   <!DOCTYPE html>
+   <html xmlns:th="http://www.thymeleaf.org">
+   <head>
+       <title>Carrito de Compra</title>
+   </head>
+   <body>
+       <h1>Carrito de Compra</h1>
+       <ul>
+           <li th:each="compras : ${compras}">
+               <span th:text="${compras.productos.nombre}"></span>
+               <span th:text="${compras.productos.descripcion}"></span>
+               <span th:text="${compras.productos.precio}"></span>
+               <span th:text="${compras.productos.cantidad_disponible}"></span>
+               <a th:href="@{/removeFromCart/${compras.productos.id}}">Eliminar</a>
+           </li>
+       </ul>
+       <p>Total: <span th:text="${totalAmount}"></span></p>
+       <a th:href="@{/checkout}">Confirmar Compra</a>
+   </body>
+   </html>

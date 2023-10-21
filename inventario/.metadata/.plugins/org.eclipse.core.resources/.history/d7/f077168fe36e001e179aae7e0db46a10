@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>carrito compras</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+	<div class="container mt-4">
+		<h2>Agregar Compra</h2>
+		<form id="tuFormularioID" th:action="@{/compras/guardar}" th:object="${compras}" method="post">
+			
+			<div class="form-group mb-3">
+				<label for="id" class="form-label">id</label>
+				<input type="number" class="form-control" id="id" name="id" th:field="*{id}" required>
+			</div>
+			
+			<div class="form-group mb-3">
+				<label for="nombre" class="form-label">nombre</label>
+				<input type="number" class="form-control" id="id" name="id" th:field="*{producto_id}" required>
+			</div>
+			
+			<div class="form-group mb-3">
+				<label for="descripcion" class="form-label">descripcion</label>
+				<textarea class="form-control" id="descripcion" name="descripcion" rows="3" th:field="*{cantidad}" required></textarea>
+			</div>
+			<div class="form-group mb-3">
+				<label for="precio" class="form-label">precio</label>
+				<input type="number" class="form-control" th:field="*{total}" required>
+			</div>
+			<div class="form-group mb-3">
+				<label for="precio" class="form-label">Fecha</label>
+				<input type="date" class="form-control" id="fechaInput" th:field="*{fecha}" required>
+			</div>
+			<button type="submit" class="btn btn-primary">Guardar</button>
+		</form>
+	</div>
+	
+	<script>
+    // Función para convertir la fecha al formato yyyy-MM-dd
+    function convertirFecha() {
+        const fechaInput = document.getElementById("fechaInput");
+        const fechaValue = fechaInput.value;
+        
+        if (fechaValue) {
+            const partes = fechaValue.split("-");
+            if (partes.length === 3) {
+                const nuevaFecha = partes[2] + "-" + partes[1] + "-" + partes[0];
+                fechaInput.value = nuevaFecha;
+            }
+        }
+    }
+    
+    // Escuchar el evento submit del formulario
+    document.getElementById("tuFormularioID").addEventListener("submit", convertirFecha);
+</script>
+	
+</body>
+
+</html>

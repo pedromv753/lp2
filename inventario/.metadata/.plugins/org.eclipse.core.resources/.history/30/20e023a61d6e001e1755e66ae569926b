@@ -1,0 +1,55 @@
+package controllador;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import ch.qos.logback.core.model.Model;
+import interfaces.interfacesproductos;
+
+import modelos.compras;
+import interfaces.interfacescompras;
+	
+	@Controller
+	@RequestMapping("/compras")
+	public class comprascontroller {
+		@Autowired
+		private interfacescompras comprasRep;
+		
+		@GetMapping("/")
+		public String listarcliente(Model model) {
+			List<compras> compras = comprasRep.findAll();
+			model.addAttribute("compras", compras);
+			return "listarcompras"; // nombre de la vista
+		}
+
+		@GetMapping("/nuevo")
+		public String nuevocliente(Model model) {
+			model.addAttribute("Cliente", new Cliente());
+			return "nuevo"; // nombre de la vista
+		}
+
+		@PostMapping("/guardar")
+		public String guardarproducto(@ModelAttribute Cliente cliente) {
+			clienteRepo.save(cliente);
+			return "redirect:/Cliente/"; 
+		}
+
+		@GetMapping("/editar/{id}")
+		public String editarcliente(@PathVariable Integer id, Model model) {
+			Cliente cliente = clienteRepo.findById(id)
+					.orElseThrow(() -> new IllegalArgumentException("ID de cliente no válido"));
+			model.addAttribute("Cliente", cliente);
+			return "editacliente"; // Vista de edición
+		}
+
+		@GetMapping("/eliminar/{id}")
+		public String eliminarcliente(@PathVariable Integer id) {
+			clienteRepo.deleteById(id);
+			return "redirect:/empleado/";
+		}
+	}
+}

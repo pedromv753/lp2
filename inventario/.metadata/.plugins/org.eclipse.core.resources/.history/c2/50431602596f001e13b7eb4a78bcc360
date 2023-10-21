@@ -1,0 +1,70 @@
+package com.example.demo.controlador;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+
+import com.example.demo.interfaces.interfacesCompras;
+import com.example.demo.interfaces.interfacesProductos;
+import com.example.demo.modelos.Compras;
+import com.example.demo.modelos.Productos;
+
+
+
+
+@Controller
+@RequestMapping("/producto")
+public class Catalogocontroller {
+    
+    // Endpoint para mostrar el catálogo
+    @GetMapping("/catalogo")
+    public String mostrarCatalogo(Model model) {
+        List<Productos> productos = obtenerProductosDelCatalogo();
+        model.addAttribute("productos", productos);
+        return "catalog";
+    }
+    
+    // Endpoint para agregar un producto al carrito
+    @GetMapping("/agregar/{id}")
+    public String agregarAlCarrito(@PathVariable Long id, Model model) {
+        // Lógica para agregar el producto al carrito
+        return "redirect:/catalogo";
+    }
+    
+    // Endpoint para mostrar el carrito de compras
+    @GetMapping("/carrito")
+    public String mostrarCarrito(Model model) {
+        // Lógica para obtener los elementos del carrito
+        model.addAttribute("carrito", elementosDelCarrito);
+        model.addAttribute("total", calcularTotalDelCarrito());
+        return "carrito";
+    }
+    
+    // Endpoint para eliminar un producto del carrito
+    @GetMapping("/eliminar/{id}")
+    public String eliminarDelCarrito(@PathVariable Long id) {
+        // Lógica para eliminar un producto del carrito
+        return "redirect:/carrito";
+    }
+    
+    // Endpoint para confirmar la compra
+    @GetMapping("/confirmar-compra")
+    public String confirmarCompra() {
+        // Lógica para confirmar la compra
+        return "redirect:/catalogo";
+    }
+}
+}
