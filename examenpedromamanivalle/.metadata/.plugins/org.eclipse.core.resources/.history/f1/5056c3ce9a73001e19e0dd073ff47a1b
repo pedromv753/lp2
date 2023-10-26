@@ -1,0 +1,33 @@
+package com.example.demo.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.example.demo.interfaces.interfaceproductos;
+import com.example.demo.modelos.productos;
+	
+	@Controller
+	@RequestMapping("/productos")
+	public class productosController {
+		
+	@Autowired
+	private interfaceproductos productosRep;
+	
+	@GetMapping("/nuevo")
+	public String nuevocliente(Model model) {
+		model.addAttribute("producto", new productos());
+		return "nuevoproductos"; // nombre de la vista
+	}
+
+	@PostMapping("/guardar")
+	public String guardarcompras(@ModelAttribute productos productos) {
+		productosRep.save(productos);
+		return "redirect:/productos/"; 
+	}
+
+}
