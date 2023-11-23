@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Catalogo</title>
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="styles.css">
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<nav th:fragment="navbar" xmlns:th="http://www.w3.org/1999/xhtml"
+		class="navbar navbar-expand-md navbar-dark bg-dark">
+		<a style="margin-left: 1rem;" class="navbar-brand" href="/">RoomReserve Pro</a>
+		<button class="navbar-toggler" type="button" id="botonMenu">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			<div class="navbar-nav">
+				<a class="nav-link active" aria-current="page" href="/carrito">Carrito de Reservas</a>
+			</div>
+		</div>
+	</nav>
+	<main>
+		<center>
+			<article class="contenedor">
+				<div class="row mt-5 g-3">
+					<article class="col-6" th:each="habita : ${habitaciones}">
+						<h4 class="text-center" th:text="${habita.tipo}"></h4>
+						<img class="rounded float-start;imgSize"
+							src="https://www.conely.es/wp-content/uploads/2019/07/decoracion-habitacion-hotel.jpg"
+							style="width: 200px;margin: 20px 75px;">
+						<p th:text="${habita.precio}"></p>
+						<form th:action="" method="post">
+							<button class="btn btn-warning">Agregar Carrito</button>
+						</form>
+					</article>
+				</div>
+			</article>
+		</center>
+	</main>
+</body>
+
+</html>
+<style>
+	.contenedor {
+		width: 30%;
+		display: flex;
+		text-align: center;
+		flex-direction: column;
+	}
+</style>
